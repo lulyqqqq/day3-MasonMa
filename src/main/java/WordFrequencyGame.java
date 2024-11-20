@@ -14,11 +14,7 @@ public class WordFrequencyGame {
             try {
                 List<WordFrequency> frequencies = getWordFrequencies(sentence);
 
-                Map<String, List<WordFrequency>> map = getListMap(frequencies);
-
-                frequencies = map.entrySet().stream()
-                        .map(entry -> new WordFrequency(entry.getKey(), entry.getValue().size()))
-                        .toList();
+                frequencies = getWordFrequencyList(frequencies);
 
                 return frequencies.stream()
                         .sorted((word, nextWord) -> Integer.compare(nextWord.getWordCount(), word.getWordCount()))
@@ -35,6 +31,14 @@ public class WordFrequencyGame {
 
         return Arrays.stream(words)
                 .map(word -> new WordFrequency(word, 1))
+                .toList();
+    }
+
+    private List<WordFrequency> getWordFrequencyList(List<WordFrequency> frequencies) {
+        Map<String, List<WordFrequency>> map = getListMap(frequencies);
+
+        return map.entrySet().stream()
+                .map(entry -> new WordFrequency(entry.getKey(), entry.getValue().size()))
                 .toList();
     }
 
