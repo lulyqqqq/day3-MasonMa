@@ -16,10 +16,7 @@ public class WordFrequencyGame {
 
                 frequencies = getWordFrequencyList(frequencies);
 
-                return frequencies.stream()
-                        .sorted((word, nextWord) -> Integer.compare(nextWord.getWordCount(), word.getWordCount()))
-                        .map(w -> w.getWord() + " " + w.getWordCount())
-                        .collect(Collectors.joining(LINE_BREAK));
+                return getResult(frequencies);
             } catch (Exception e) {
                 return CALCULATE_ERROR;
             }
@@ -42,10 +39,15 @@ public class WordFrequencyGame {
                 .toList();
     }
 
-
     private Map<String, List<WordFrequency>> getListMap(List<WordFrequency> inputList) {
         return inputList.stream()
                 .collect(Collectors.groupingBy(WordFrequency::getWord));
     }
 
+    private static String getResult(List<WordFrequency> frequencies) {
+        return frequencies.stream()
+                .sorted((word, nextWord) -> Integer.compare(nextWord.getWordCount(), word.getWordCount()))
+                .map(w -> w.getWord() + " " + w.getWordCount())
+                .collect(Collectors.joining(LINE_BREAK));
+    }
 }
