@@ -12,11 +12,7 @@ public class WordFrequencyGame {
                 //split the input string with 1 to n pieces of spaces
                 String[] words = sentence.split(Space);
 
-                List<WordFrequency> frequencies = new ArrayList<>();
-                for (String word : words) {
-                    WordFrequency frequency = new WordFrequency(word, 1);
-                    frequencies.add(frequency);
-                }
+                List<WordFrequency> frequencies = Arrays.stream(words).map(word -> new WordFrequency(word, 1)).toList();
                 //get the map for the next step of sizing the same word
                 Map<String, List<WordFrequency>> map = getListMap(frequencies);
 
