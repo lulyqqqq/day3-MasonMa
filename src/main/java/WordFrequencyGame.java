@@ -3,12 +3,12 @@ import java.util.stream.Collectors;
 
 public class WordFrequencyGame {
 
-    public static final String Space = "\\s+";
+    public static final String SPACE = "\\s+";
     public static final String LINE_BREAK = "\n";
     public static final String CALCULATE_ERROR = "Calculate Error";
 
     public String getWordFrequency(String sentence) {
-        if (sentence.split(Space).length == 1) {
+        if (sentence.split(SPACE).length == 1) {
             return sentence + " 1";
         } else {
             try {
@@ -24,7 +24,7 @@ public class WordFrequencyGame {
     }
 
     private static List<WordFrequency> getWordFrequencies(String sentence) {
-        String[] words = sentence.split(Space);
+        String[] words = sentence.split(SPACE);
 
         return Arrays.stream(words)
                 .map(word -> new WordFrequency(word, 1))
