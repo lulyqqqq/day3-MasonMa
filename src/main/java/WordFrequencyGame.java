@@ -4,6 +4,8 @@ import java.util.stream.Collectors;
 public class WordFrequencyGame {
 
     public static final String Space = "\\s+";
+    public static final String LINE_BREAK = "\n";
+    public static final String CALCULATE_ERROR = "Calculate Error";
 
     public String getWordFrequency(String sentence) {
         if (sentence.split(Space).length == 1) {
@@ -20,15 +22,15 @@ public class WordFrequencyGame {
                 Map<String, List<WordFrequency>> map = getListMap(frequencies);
 
                 frequencies = map.entrySet().stream()
-                        .map(entry->new WordFrequency(entry.getKey(),entry.getValue().size()))
+                        .map(entry -> new WordFrequency(entry.getKey(), entry.getValue().size()))
                         .toList();
 
                 return frequencies.stream()
                         .sorted((word, nextWord) -> Integer.compare(nextWord.getWordCount(), word.getWordCount()))
                         .map(w -> w.getWord() + " " + w.getWordCount())
-                        .collect(Collectors.joining("\n"));
+                        .collect(Collectors.joining(LINE_BREAK));
             } catch (Exception e) {
-                return "Calculate Error";
+                return CALCULATE_ERROR;
             }
         }
     }
