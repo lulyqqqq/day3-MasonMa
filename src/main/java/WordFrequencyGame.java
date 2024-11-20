@@ -18,7 +18,7 @@ public class WordFrequencyGame {
 
                 return getResult(frequencies);
             } catch (Exception e) {
-                return CALCULATE_ERROR;
+                return CALCULATE_ERROR + e;
             }
         }
     }
