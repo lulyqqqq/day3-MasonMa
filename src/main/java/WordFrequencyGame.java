@@ -9,25 +9,25 @@ public class WordFrequencyGame {
                 //split the input string with 1 to n pieces of spaces
                 String[] words = sentence.split("\\s+");
 
-                List<wordFrequency> inputList = new ArrayList<>();
+                List<wordFrequency> frequencies = new ArrayList<>();
                 for (String word : words) {
                     wordFrequency input = new wordFrequency(word, 1);
-                    inputList.add(input);
+                    frequencies.add(input);
                 }
                 //get the map for the next step of sizing the same word
-                Map<String, List<wordFrequency>> map = getListMap(inputList);
+                Map<String, List<wordFrequency>> map = getListMap(frequencies);
 
                 List<wordFrequency> list = new ArrayList<>();
                 for (Map.Entry<String, List<wordFrequency>> entry : map.entrySet()) {
                     wordFrequency input = new wordFrequency(entry.getKey(), entry.getValue().size());
                     list.add(input);
                 }
-                inputList = list;
+                frequencies = list;
 
-                inputList.sort((w1, w2) -> w2.getWordCount() - w1.getWordCount());
+                frequencies.sort((w1, w2) -> w2.getWordCount() - w1.getWordCount());
 
                 StringJoiner joiner = new StringJoiner("\n");
-                for (wordFrequency w : inputList) {
+                for (wordFrequency w : frequencies) {
                     String s = w.getWord() + " " + w.getWordCount();
                     joiner.add(s);
                 }
